@@ -74,8 +74,8 @@ public/
 ```xml
 <AssetManifest version="1">
   <Assets>
-    <Asset id="tex.coin" type="texture" src="/assets/coin.svg" />
-    <Asset id="tex.particle.white" type="texture" src="/assets/particle_white.svg" />
+    <Asset id="tex.coin" type="texture" src="/svg/coin.svg" />
+    <Asset id="tex.particle.white" type="texture" src="/svg/particle_white.svg" />
     <Asset id="mesh.enemy.basic" type="primitive" primitive="sphere" />
   </Assets>
 </AssetManifest>

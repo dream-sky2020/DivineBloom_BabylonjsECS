@@ -4,7 +4,7 @@
     <Asset id="mesh.enemy.sphere" type="primitive" primitive="sphere" />
     <Asset id="mesh.pickup.plane" type="primitive" primitive="plane" />
 
-    <Asset id="tex.coin" type="texture" src="/assets/coin.svg" />
-    <Asset id="tex.particle.white" type="texture" src="/assets/particle_white.svg" />
+    <Asset id="tex.coin" type="texture" src="/svg/coin.svg" />
+    <Asset id="tex.particle.white" type="texture" src="/svg/particle_white.svg" />
   </Assets>
 </AssetManifest>
