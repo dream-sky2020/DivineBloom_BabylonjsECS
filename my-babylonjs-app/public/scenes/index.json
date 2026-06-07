@@ -1,0 +1,7 @@
+{
+  "project": "/project/project.xml",
+  "worlds": [
+    "/scenes/level_001.world.xml",
+    "/scenes/level_002.world.xml"
+  ]
+}

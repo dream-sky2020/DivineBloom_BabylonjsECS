@@ -1,0 +1,114 @@
+<World version="1" id="level_001">
+  <SceneConfig clearColor="#0d1420" />
+  <CameraConfig>
+    <Camera
+      id="main"
+      type="arcRotate"
+      alpha="0.7853981634"
+      beta="1.08"
+      radius="33"
+      target="0,0,0"
+      lowerRadiusLimit="20"
+      upperRadiusLimit="40"
+      attachControl="true" />
+  </CameraConfig>
+  <DataModel>
+    <GlobalData>
+      <State key="gameBound" value="18" valueType="number" />
+      <State key="targetScore" value="10" valueType="number" />
+      <!-- deprecated: playerSpeed 已迁移到 Behaviors.Movement.speed（2026-06 ECS） -->
+      <State key="playerSpeedBoostMultiplier" value="1.0" valueType="number" />
+      <State key="player.trailEmitRateMoving" value="180" valueType="number" />
+      <State key="player.trailEmitRateIdle" value="10" valueType="number" />
+      <State key="enemy.turnCurrentWeight" value="0.95" valueType="number" />
+      <State key="enemy.turnTargetWeight" value="0.05" valueType="number" />
+      <State key="enemy.hitDistance" value="1.5" valueType="number" />
+      <State key="enemy.invincibleDurationOnHit" value="1.2" valueType="number" />
+      <State key="enemy.respawnY" value="0.75" valueType="number" />
+      <State key="enemy.gameOverMessage" value="游戏结束！按 R 重新开始" valueType="string" />
+      <State key="orb.floatBaseY" value="1.2" valueType="number" />
+      <State key="orb.floatAmplitude" value="0.2" valueType="number" />
+      <State key="orb.floatFrequency" value="3" valueType="number" />
+      <State key="orb.collectDistance" value="1.5" valueType="number" />
+      <State key="orb.scorePerCollect" value="1" valueType="number" />
+      <State key="orb.winMessage" value="你赢了！按 R 再来一局" valueType="string" />
+      <State key="runtime.score" value="0" valueType="number" />
+      <State key="runtime.hp" value="3" valueType="number" />
+      <State key="runtime.gameOver" value="false" valueType="boolean" />
+      <State key="runtime.invincibleTime" value="0" valueType="number" />
+      <State key="runtime.elapsedTime" value="0" valueType="number" />
+      <State key="runtime.input.upPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.downPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.leftPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.rightPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.restartPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.restartPressedFromUi" value="false" valueType="boolean" />
+      <State key="runtime.input.speedBoost" value="false" valueType="boolean" />
+      <State key="runtime.input.speedBoostFromUi" value="false" valueType="boolean" />
+      <State key="runtime.input.moveX" value="0" valueType="number" />
+      <State key="runtime.input.moveZ" value="0" valueType="number" />
+      <State key="runtime.ui.restartPressed" value="false" valueType="boolean" />
+      <State key="runtime.ui.speedBoostEnabled" value="false" valueType="boolean" />
+      <State key="runtime.ui.speedBoostScale" value="1.4" valueType="number" />
+    </GlobalData>
+    <InputBindings>
+      <Binding target="runtime.input.upPressed" keys="KeyW,ArrowUp" mode="hold" scale="1" />
+      <Binding target="runtime.input.downPressed" keys="KeyS,ArrowDown" mode="hold" scale="1" />
+      <Binding target="runtime.input.leftPressed" keys="KeyA,ArrowLeft" mode="hold" scale="1" />
+      <Binding target="runtime.input.rightPressed" keys="KeyD,ArrowRight" mode="hold" scale="1" />
+      <Binding target="runtime.input.restartPressed" keys="KeyR" mode="hold" scale="1" />
+    </InputBindings>
+  </DataModel>
+  <Systems>
+    <System name="TimeSystem" enabled="true" />
+    <System name="UiInputSystem" enabled="true" />
+    <System name="SceneSwitchSystem" enabled="true" />
+    <System name="RestartSystem" enabled="true" />
+    <System name="PlayerMovementSystem" enabled="true" />
+    <System name="InvincibilitySystem" enabled="true" />
+    <System name="EnemyChaseSystem" enabled="true" />
+    <System name="OrbCollectSystem" enabled="true" />
+  </Systems>
+
+  <References>
+    <AssetManifest src="/manifests/assets.manifest.xml" />
+    <UiRef src="/ui/world/hud.ui.xml" />
+    <PrefabRef id="player.main" src="/prefabs/player.prefab.xml" />
+    <PrefabRef id="enemy.chaser" src="/prefabs/enemy_chaser.prefab.xml" />
+    <PrefabRef id="pickup.coin" src="/prefabs/coin.prefab.xml" />
+  </References>
+
+  <Entities>
+    <Instance id="player_1" prefab="player.main">
+      <Override path="Transform.position" value="0,0.8,0" valueType="vector3" />
+    </Instance>
+
+    <Instance id="enemy_01" prefab="enemy.chaser">
+      <Override path="Transform.position" value="-10,0.75,-8" valueType="vector3" />
+      <Override path="Behaviors.Movement.speed" value="5.2" valueType="number" />
+    </Instance>
+    <Instance id="enemy_02" prefab="enemy.chaser">
+      <Override path="Transform.position" value="9,0.75,-7" valueType="vector3" />
+      <Override path="Behaviors.Movement.speed" value="6.1" valueType="number" />
+    </Instance>
+    <Instance id="enemy_03" prefab="enemy.chaser">
+      <Override path="Transform.position" value="-6,0.75,9" valueType="vector3" />
+      <Override path="Behaviors.Movement.speed" value="5.6" valueType="number" />
+    </Instance>
+    <Instance id="enemy_04" prefab="enemy.chaser">
+      <Override path="Transform.position" value="8,0.75,7" valueType="vector3" />
+      <Override path="Behaviors.Movement.speed" value="6.5" valueType="number" />
+    </Instance>
+
+    <Instance id="coin_01" prefab="pickup.coin"><Override path="Transform.position" value="-11,1.2,-10" valueType="vector3" /></Instance>
+    <Instance id="coin_02" prefab="pickup.coin"><Override path="Transform.position" value="-6,1.2,-12" valueType="vector3" /></Instance>
+    <Instance id="coin_03" prefab="pickup.coin"><Override path="Transform.position" value="-2,1.2,-8" valueType="vector3" /></Instance>
+    <Instance id="coin_04" prefab="pickup.coin"><Override path="Transform.position" value="3,1.2,-11" valueType="vector3" /></Instance>
+    <Instance id="coin_05" prefab="pickup.coin"><Override path="Transform.position" value="9,1.2,-7" valueType="vector3" /></Instance>
+    <Instance id="coin_06" prefab="pickup.coin"><Override path="Transform.position" value="-10,1.2,2" valueType="vector3" /></Instance>
+    <Instance id="coin_07" prefab="pickup.coin"><Override path="Transform.position" value="-4,1.2,6" valueType="vector3" /></Instance>
+    <Instance id="coin_08" prefab="pickup.coin"><Override path="Transform.position" value="1,1.2,9" valueType="vector3" /></Instance>
+    <Instance id="coin_09" prefab="pickup.coin"><Override path="Transform.position" value="7,1.2,5" valueType="vector3" /></Instance>
+    <Instance id="coin_10" prefab="pickup.coin"><Override path="Transform.position" value="12,1.2,11" valueType="vector3" /></Instance>
+  </Entities>
+</World>

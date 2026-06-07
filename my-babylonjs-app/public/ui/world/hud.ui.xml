@@ -1,0 +1,40 @@
+<Ui version="1" id="hud.main">
+  <Text id="scoreText" text="分数：{runtime.score} / {targetScore}" left="16" top="16" color="#f2f7ff" fontSize="22" />
+  <Text id="hpText" text="生命：{runtime.hp}" left="16" top="48" color="#f2f7ff" fontSize="22" />
+  <Text id="controlsText" text="操作：WASD / 方向键移动，R 或 UI 重开" left="16" top="80" color="#dbeafe" fontSize="18" />
+  <Button
+    id="restartButton"
+    text="UI 重开"
+    bindPressed="runtime.ui.restartPressed"
+    bindVisible="runtime.gameOver"
+    left="16"
+    top="120"
+    width="140"
+    height="42"
+    fontSize="18"
+    color="#ffffff"
+    background="#1f3b8a" />
+  <Toggle
+    id="speedBoostToggle"
+    text="UI 加速"
+    bindChecked="runtime.ui.speedBoostEnabled"
+    left="16"
+    top="170"
+    width="180"
+    height="24"
+    fontSize="18"
+    color="#dbeafe" />
+  <Slider
+    id="speedBoostSlider"
+    bindValue="runtime.ui.speedBoostScale"
+    left="16"
+    top="202"
+    width="210"
+    height="20"
+    min="1"
+    max="3"
+    step="0.05"
+    background="#2b2f38"
+    thumbColor="#7cc7ff" />
+  <Text id="speedBoostText" text="UI 倍率：{runtime.ui.speedBoostScale}" left="16" top="228" color="#dbeafe" fontSize="16" />
+</Ui>

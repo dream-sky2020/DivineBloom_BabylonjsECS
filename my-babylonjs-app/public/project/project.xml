@@ -1,0 +1,16 @@
+<Project version="1" id="main_project">
+  <DataModel>
+    <GlobalData>
+      <State key="project.ui.mainMenuVisible" value="true" valueType="boolean" />
+      <State key="runtime.input.prevWorldPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.nextWorldPressed" value="false" valueType="boolean" />
+    </GlobalData>
+    <InputBindings>
+      <Binding target="runtime.input.prevWorldPressed" keys="F7" mode="hold" scale="1" />
+      <Binding target="runtime.input.nextWorldPressed" keys="F8" mode="hold" scale="1" />
+    </InputBindings>
+  </DataModel>
+  <References>
+    <UiRef src="/ui/global/main_menu.ui.xml" />
+  </References>
+</Project>

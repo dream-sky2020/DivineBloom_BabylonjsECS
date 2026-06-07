@@ -1,0 +1,13 @@
+<Ui version="1" id="global.main_menu">
+  <Text id="globalTitle" text="Babylon XML Demo" left="16" top="280" color="#ffe08a" fontSize="20" />
+  <Toggle
+    id="mainMenuVisibleToggle"
+    text="显示全局菜单"
+    bindChecked="project.ui.mainMenuVisible"
+    left="16"
+    top="312"
+    width="220"
+    height="24"
+    fontSize="16"
+    color="#ffe08a" />
+</Ui>

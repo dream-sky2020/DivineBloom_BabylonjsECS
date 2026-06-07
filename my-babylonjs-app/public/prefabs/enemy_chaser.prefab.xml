@@ -1,0 +1,16 @@
+<Prefab version="1" id="enemy.chaser" groups="enemy,chaser">
+  <Root>
+    <Transform position="0,0.75,0" rotation="0,0,0" scaling="1,1,1" />
+    <Renderable kind="primitive" assetId="mesh.enemy.sphere" diameter="1.5">
+      <Material type="standard" diffuseColor="#f23a3a" specularColor="#000000" />
+    </Renderable>
+  </Root>
+  <Behaviors>
+    <EnemyAi direction="1,0,0" />
+    <Movement speed="5.8" />
+  </Behaviors>
+  <Exportables>
+    <Field path="Transform.position" valueType="vector3" />
+    <Field path="Renderable.Material.diffuseColor" valueType="color3" />
+  </Exportables>
+</Prefab>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Babylon.js 3D 小游戏</title>
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+
+        #hud {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 10;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: #f2f7ff;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: rgba(0, 0, 0, 0.4);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        #message {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11;
+            color: #ffffff;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        <div id="score">分数：0 / 10</div>
+        <div id="hp">生命：3</div>
+        <div>操作：WASD / 方向键移动，R 重开</div>
+    </div>
+    <div id="message"></div>
+    <canvas id="renderCanvas"></canvas>
+    <script type="module" src="/src/index.ts"></script>
+</body>
+</html>

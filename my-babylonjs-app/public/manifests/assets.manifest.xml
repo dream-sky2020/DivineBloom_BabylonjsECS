@@ -1,0 +1,10 @@
+<AssetManifest version="1">
+  <Assets>
+    <Asset id="mesh.player.box" type="primitive" primitive="box" />
+    <Asset id="mesh.enemy.sphere" type="primitive" primitive="sphere" />
+    <Asset id="mesh.pickup.plane" type="primitive" primitive="plane" />
+
+    <Asset id="tex.coin" type="texture" src="/assets/coin.svg" />
+    <Asset id="tex.particle.white" type="texture" src="/assets/particle_white.svg" />
+  </Assets>
+</AssetManifest>

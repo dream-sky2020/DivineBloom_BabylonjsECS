@@ -1,0 +1,13 @@
+<Prefab version="1" id="pickup.coin" groups="orb,collectible">
+  <Root>
+    <Transform position="0,1.2,0" rotation="0,0,0" scaling="1,1,1" />
+    <Renderable kind="billboard" assetId="mesh.pickup.plane" textureId="tex.coin" size="1.8" />
+  </Root>
+  <Behaviors>
+    <Collectible value="1" collected="false" />
+  </Behaviors>
+  <Exportables>
+    <Field path="Transform.position" valueType="vector3" />
+    <Field path="Renderable.size" valueType="number" />
+  </Exportables>
+</Prefab>

@@ -1,0 +1,16 @@
+<Prefab version="1" id="player.main" groups="player">
+  <Root>
+    <Transform position="0,0.8,0" rotation="0,0,0" scaling="1,1,1" />
+    <Renderable kind="primitive" assetId="mesh.player.box" size="1.6">
+      <Material type="standard" diffuseColor="#4db3ff" specularColor="#000000" />
+    </Renderable>
+  </Root>
+  <Behaviors>
+    <Player isPlayer="true" />
+    <Movement speed="12" />
+  </Behaviors>
+  <Exportables>
+    <Field path="Transform.position" valueType="vector3" />
+    <Field path="Renderable.Material.diffuseColor" valueType="color3" />
+  </Exportables>
+</Prefab>
