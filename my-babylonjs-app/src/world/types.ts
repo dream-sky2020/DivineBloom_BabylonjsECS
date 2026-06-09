@@ -1,5 +1,5 @@
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
-import { UiLayoutConfig } from "../ui/types";
+import { UiLayoutConfig } from "../ui/core/types";
 
 export type ValueType = "number" | "boolean" | "string" | "vector3" | "color3";
 export type WorldPropertyValue = number | boolean | string | Vector3;

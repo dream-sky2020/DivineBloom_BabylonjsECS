@@ -6,7 +6,7 @@ import { Control } from "@babylonjs/gui/2D/controls/control";
 import { InputText } from "@babylonjs/gui/2D/controls/inputText";
 import { Slider } from "@babylonjs/gui/2D/controls/sliders/slider";
 import { TextBlock } from "@babylonjs/gui/2D/controls/textBlock";
-import { GameDataAccessor } from "../systems/dataAccessor";
+import { GameDataAccessor } from "../../systems/dataAccessor";
 import {
     UiButtonNodeConfig,
     UiInputNodeConfig,

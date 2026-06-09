@@ -2,7 +2,7 @@ import { Engine } from "@babylonjs/core/Engines/engine";
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { Scene } from "@babylonjs/core/scene";
 import { InputAdapter } from "../input/types";
-import { DomGameUi } from "../ui/domGameUi";
+import { DomGameUi } from "../ui/dom/domGameUi";
 import { loadProjectBundle, loadWorldBundle } from "../world/worldLoader";
 import { ProjectBundle, WorldPropertyValue } from "../world/types";
 import { createGameScene } from "./createGameScene";

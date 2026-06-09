@@ -5,6 +5,7 @@ type CreateDomGameUiOptions = {
 
 export type DomGameUi = {
     canvas: HTMLCanvasElement;
+    overlayRoot: HTMLDivElement;
     setDevStatus: (text: string) => void;
     updateHud: (score: number, targetScore: number, hp: number) => void;
     showMessage: (text: string) => void;
@@ -21,6 +22,9 @@ export const createDomGameUi = (options: CreateDomGameUiOptions): DomGameUi => {
     if (!(canvas instanceof HTMLCanvasElement)) {
         throw new Error("未找到渲染画布 #renderCanvas");
     }
+    const overlayRoot = document.createElement("div");
+    overlayRoot.id = "react-overlay-root";
+    document.body.appendChild(overlayRoot);
 
     const devStatusLabel = document.createElement("div");
     devStatusLabel.style.position = "fixed";
@@ -71,6 +75,7 @@ export const createDomGameUi = (options: CreateDomGameUiOptions): DomGameUi => {
 
     return {
         canvas,
+        overlayRoot,
         setDevStatus,
         updateHud,
         showMessage,

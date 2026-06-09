@@ -12,8 +12,8 @@ import { createGameDataAccessor } from "../systems/dataAccessor";
 import { createSystemRegistryForNames } from "../systems/registry";
 import { createGameServices } from "../systems/services";
 import { GameSystemContext } from "../systems/types";
-import { DomGameUi } from "../ui/domGameUi";
-import { createBabylonXmlUi } from "../ui/babylonXmlUi";
+import { DomGameUi } from "../ui/dom/domGameUi";
+import { createUiRuntimes } from "../ui/panels/registry";
 import { WorldBundle, WorldPropertyValue } from "../world/types";
 import { parseColor } from "../utils/color";
 import { assembleWorldEntities } from "./entityAssembler";
@@ -132,12 +132,18 @@ export const createGameScene = ({
     services.updateHud();
     ui.hideMessage();
 
-    const xmlUis = [
-        ...globalUiLayouts.map((layout) => createBabylonXmlUi({ scene, data, layout })),
-        ...(worldUiLayout ? [createBabylonXmlUi({ scene, data, layout: worldUiLayout })] : []),
+    const allLayouts = [
+        ...globalUiLayouts,
+        ...(worldUiLayout ? [worldUiLayout] : []),
     ];
-    for (const xmlUi of xmlUis) {
-        xmlUi.refresh();
+    const uiRuntimes = createUiRuntimes({
+        scene,
+        data,
+        overlayRoot: ui.overlayRoot,
+        layouts: allLayouts,
+    });
+    for (const uiRuntime of uiRuntimes) {
+        uiRuntime.refresh();
     }
 
     scene.onBeforeRenderObservable.add(() => {
@@ -145,13 +151,13 @@ export const createGameScene = ({
         for (const system of activeSystems) {
             system(deltaTime);
         }
-        for (const xmlUi of xmlUis) {
-            xmlUi.refresh();
+        for (const uiRuntime of uiRuntimes) {
+            uiRuntime.refresh();
         }
     });
     scene.onDisposeObservable.add(() => {
-        for (const xmlUi of xmlUis) {
-            xmlUi.dispose();
+        for (const uiRuntime of uiRuntimes) {
+            uiRuntime.dispose();
         }
     });
 

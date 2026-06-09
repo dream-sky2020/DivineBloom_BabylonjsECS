@@ -1,4 +1,4 @@
-import { loadUiLayout } from "../ui/xmlLayout";
+import { loadUiLayout } from "../ui/core/xmlLayout";
 import { PrefabDef, ProjectBundle, WorldBundle, WorldPropertyValue } from "./types";
 import { applyOverrides } from "./loader/overrides";
 import { parseAssetManifest, parsePrefab, parseProject, parseWorld } from "./loader/parsers";

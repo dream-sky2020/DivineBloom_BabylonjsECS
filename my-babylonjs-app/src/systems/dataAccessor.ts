@@ -27,6 +27,7 @@ const withSystemName = (systemName: string | undefined, message: string) => {
 export interface GameDataAccessor {
     get<K extends ValueType>(id: string, kind: K, systemName?: string): ValueTypeMap[K];
     set<K extends ValueType>(id: string, kind: K, value: ValueTypeMap[K], systemName?: string): void;
+    subscribe: (id: string, listener: () => void) => () => void;
     has(id: string): boolean;
     getSchema(id: string): WorldPropertySchema | undefined;
     ensure(id: string, kind: ValueType, access: PropertyAccessMode, systemName?: string): void;
@@ -97,6 +98,7 @@ export const createGameDataAccessor = (
 ): GameDataAccessor => {
     const schema = new Map<string, WorldPropertySchema>(schemaEntries);
     const values = new Map<string, WorldPropertyValue>(initialValues);
+    const listeners = new Map<string, Set<() => void>>();
 
     const ensure = (id: string, kind: ValueType, access: PropertyAccessMode, systemName?: string) => {
         const schemaEntry = schema.get(id);
@@ -139,12 +141,39 @@ export const createGameDataAccessor = (
 
     const set = <K extends ValueType>(id: string, kind: K, value: ValueTypeMap[K], systemName?: string) => {
         ensure(id, kind, "write", systemName);
+        const previousValue = values.get(id);
         values.set(id, value);
+        if (previousValue !== value) {
+            const propertyListeners = listeners.get(id);
+            if (propertyListeners) {
+                for (const listener of propertyListeners) {
+                    listener();
+                }
+            }
+        }
     };
 
     return {
         get,
         set,
+        subscribe: (id, listener) => {
+            let propertyListeners = listeners.get(id);
+            if (!propertyListeners) {
+                propertyListeners = new Set();
+                listeners.set(id, propertyListeners);
+            }
+            propertyListeners.add(listener);
+            return () => {
+                const nextPropertyListeners = listeners.get(id);
+                if (!nextPropertyListeners) {
+                    return;
+                }
+                nextPropertyListeners.delete(listener);
+                if (nextPropertyListeners.size === 0) {
+                    listeners.delete(id);
+                }
+            };
+        },
         has: (id) => schema.has(id),
         getSchema: (id) => schema.get(id),
         ensure,
@@ -175,6 +204,7 @@ export const createScopedGameDataAccessor = (
             assertScopedAccess(scopedGrants, id, kind, "write", effectiveSystemName);
             accessor.set(id, kind, value, effectiveSystemName);
         },
+        subscribe: (id, listener) => accessor.subscribe(id, listener),
         has: (id) => accessor.has(id),
         getSchema: (id) => accessor.getSchema(id),
         ensure: (id, kind, access, callerName) => {

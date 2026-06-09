@@ -11,9 +11,13 @@
   "dependencies": {
     "@babylonjs/core": "^9.0.0",
     "@babylonjs/gui": "^9.11.0",
-    "@babylonjs/loaders": "^9.0.0"
+    "@babylonjs/loaders": "^9.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "typescript": "^5.4.0",
     "vite": "^6.0.0"
   }

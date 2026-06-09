@@ -2,7 +2,7 @@ import { Engine } from "@babylonjs/core/Engines/engine";
 import { clamp, randomInRange } from "./utils/math";
 import { createInputAdapter } from "./input/adapter";
 import { createSceneRuntime } from "./scene/sceneRuntime";
-import { createDomGameUi } from "./ui/domGameUi";
+import { createDomGameUi } from "./ui/dom/domGameUi";
 import { createWorldFlowController } from "./world/worldFlowController";
 
 const defaultProjectFromHtml = document.body.dataset.defaultProject;
