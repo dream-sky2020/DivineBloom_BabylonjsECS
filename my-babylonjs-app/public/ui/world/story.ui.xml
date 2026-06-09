@@ -1,0 +1,119 @@
+<Ui version="1" id="story.main">
+  <Text
+    id="storyTitle"
+    text="{runtime.story.sceneTitle}"
+    left="20"
+    top="18"
+    color="#ffe7a8"
+    fontSize="28" />
+
+  <Text
+    id="storyLinePreview"
+    text="{runtime.story.currentLine}"
+    bindFontFamily="runtime.ui.dialogueFontFamily"
+    left="20"
+    top="62"
+    color="#f5f7ff"
+    fontSize="24" />
+
+  <Input
+    id="storyLineEditor"
+    bindValue="runtime.story.currentLine"
+    bindFontFamily="runtime.ui.dialogueFontFamily"
+    left="20"
+    top="104"
+    width="920"
+    height="52"
+    fontSize="24"
+    color="#ffffff"
+    background="#202636"
+    placeholder="输入剧情对话内容..." />
+
+  <Input
+    id="storyFontFamilyEditor"
+    bindValue="runtime.ui.dialogueFontFamily"
+    left="20"
+    top="168"
+    width="460"
+    height="44"
+    fontSize="20"
+    color="#ffffff"
+    background="#1d2330"
+    placeholder="输入字体名，如 Microsoft YaHei / SimSun / KaiTi / Arial" />
+
+  <Button
+    id="nextDialogueButton"
+    text="下一句"
+    bindPressed="runtime.ui.nextDialoguePressed"
+    left="500"
+    top="168"
+    width="130"
+    height="44"
+    fontSize="20"
+    color="#ffffff"
+    background="#315bdb" />
+
+  <Toggle
+    id="autoPlayToggle"
+    text="自动播放"
+    bindChecked="runtime.ui.autoPlayEnabled"
+    left="20"
+    top="224"
+    width="180"
+    height="28"
+    fontSize="18"
+    color="#dce7ff" />
+
+  <Toggle
+    id="skipToggle"
+    text="跳过对话"
+    bindChecked="runtime.ui.skipPressed"
+    left="220"
+    top="224"
+    width="180"
+    height="28"
+    fontSize="18"
+    color="#ffd1d1" />
+
+  <Text
+    id="playbackRateLabel"
+    text="播放倍速：{runtime.ui.playbackSpeedMultiplier}x（支持 2x / 3x）"
+    left="20"
+    top="264"
+    color="#dbeafe"
+    fontSize="18" />
+
+  <Slider
+    id="playbackRateSlider"
+    bindValue="runtime.ui.playbackSpeedMultiplier"
+    left="20"
+    top="292"
+    width="360"
+    height="22"
+    min="1"
+    max="3"
+    step="1"
+    background="#2b2f38"
+    thumbColor="#76d0ff" />
+
+  <Text
+    id="choiceLabel"
+    text="剧情分支选项：{runtime.ui.selectedChoiceIndex}"
+    left="420"
+    top="264"
+    color="#dbeafe"
+    fontSize="18" />
+
+  <Slider
+    id="choiceSlider"
+    bindValue="runtime.ui.selectedChoiceIndex"
+    left="420"
+    top="292"
+    width="300"
+    height="22"
+    min="0"
+    max="2"
+    step="1"
+    background="#2b2f38"
+    thumbColor="#9df3b1" />
+</Ui>

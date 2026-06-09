@@ -17,15 +17,15 @@ export const mergeProjectAndWorldState = (
     }
 
     for (const [id, schema] of world.globalStateSchema.entries()) {
-        if (propertySchema.has(id)) {
-            throw new Error(`World.GlobalData 不允许覆盖 Project.GlobalData 字段: ${id}`);
+        const projectSchema = propertySchema.get(id);
+        if (projectSchema && projectSchema.valueType !== schema.valueType) {
+            throw new Error(
+                `World.GlobalData 覆盖字段 ${id} 类型不匹配: Project=${projectSchema.valueType}, World=${schema.valueType}`,
+            );
         }
         propertySchema.set(id, schema);
     }
     for (const [id, value] of world.globalStateInitialValues.entries()) {
-        if (initialValues.has(id)) {
-            throw new Error(`World.GlobalData 不允许覆盖 Project.GlobalData 初始值: ${id}`);
-        }
         initialValues.set(id, cloneWorldPropertyValue(value));
     }
 

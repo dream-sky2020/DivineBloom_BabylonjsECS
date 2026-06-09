@@ -134,6 +134,9 @@ export const clonePrefabBehaviorDefaults = (behaviors: PrefabBehaviorDefaults): 
     if (behaviors.Player) {
         cloned.Player = { ...behaviors.Player };
     }
+    if (behaviors.TurnBasedUnit) {
+        cloned.TurnBasedUnit = { ...behaviors.TurnBasedUnit };
+    }
     return cloned;
 };
 
@@ -153,7 +156,10 @@ export const parseGlobalDataStates = (
     const stateNodes = Array.from(globalDataNode.querySelectorAll(":scope > State"));
     for (const stateNode of stateNodes) {
         const key = requiredAttr(stateNode, "key");
-        const value = requiredAttr(stateNode, "value");
+        const value = stateNode.getAttribute("value");
+        if (value === null) {
+            throw new Error(`缺少属性: <${stateNode.tagName}>.value`);
+        }
         const valueType = parseValueType(
             stateNode.getAttribute("valueType"),
             "string",

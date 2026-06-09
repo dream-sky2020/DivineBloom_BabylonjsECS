@@ -21,9 +21,6 @@ export const createDomGameUi = (options: CreateDomGameUiOptions): DomGameUi => {
     if (!(canvas instanceof HTMLCanvasElement)) {
         throw new Error("未找到渲染画布 #renderCanvas");
     }
-    if (!(scoreLabel instanceof HTMLDivElement) || !(hpLabel instanceof HTMLDivElement) || !(messageLabel instanceof HTMLDivElement)) {
-        throw new Error("未找到 HUD 元素");
-    }
 
     const devStatusLabel = document.createElement("div");
     devStatusLabel.style.position = "fixed";
@@ -50,16 +47,25 @@ export const createDomGameUi = (options: CreateDomGameUiOptions): DomGameUi => {
     };
 
     const updateHud = (score: number, targetScore: number, hp: number) => {
+        if (!(scoreLabel instanceof HTMLDivElement) || !(hpLabel instanceof HTMLDivElement)) {
+            return;
+        }
         scoreLabel.textContent = `分数：${score} / ${targetScore}`;
         hpLabel.textContent = `生命：${hp}`;
     };
 
     const showMessage = (text: string) => {
+        if (!(messageLabel instanceof HTMLDivElement)) {
+            return;
+        }
         messageLabel.textContent = text;
         messageLabel.style.display = "block";
     };
 
     const hideMessage = () => {
+        if (!(messageLabel instanceof HTMLDivElement)) {
+            return;
+        }
         messageLabel.style.display = "none";
     };
 

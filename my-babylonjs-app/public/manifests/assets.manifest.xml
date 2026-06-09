@@ -3,8 +3,82 @@
     <Asset id="mesh.player.box" type="primitive" primitive="box" />
     <Asset id="mesh.enemy.sphere" type="primitive" primitive="sphere" />
     <Asset id="mesh.pickup.plane" type="primitive" primitive="plane" />
-
+    <Asset id="tex.animal.alpaca.svgrepo.com" type="texture" src="/svg/animal/alpaca-svgrepo-com.svg" />
+    <Asset id="tex.animal.anteater.svgrepo.com" type="texture" src="/svg/animal/anteater-svgrepo-com.svg" />
+    <Asset id="tex.animal.bat.svgrepo.com" type="texture" src="/svg/animal/bat-svgrepo-com.svg" />
+    <Asset id="tex.animal.beetle.svgrepo.com" type="texture" src="/svg/animal/beetle-svgrepo-com.svg" />
+    <Asset id="tex.animal.butterfly.svgrepo.com" type="texture" src="/svg/animal/butterfly-svgrepo-com.svg" />
+    <Asset id="tex.animal.camel.svgrepo.com" type="texture" src="/svg/animal/camel-svgrepo-com.svg" />
+    <Asset id="tex.animal.cat.svgrepo.com" type="texture" src="/svg/animal/cat-svgrepo-com.svg" />
+    <Asset id="tex.animal.chameleon.svgrepo.com" type="texture" src="/svg/animal/chameleon-svgrepo-com.svg" />
+    <Asset id="tex.animal.cobra.svgrepo.com" type="texture" src="/svg/animal/cobra-svgrepo-com.svg" />
+    <Asset id="tex.animal.crab.svgrepo.com" type="texture" src="/svg/animal/crab-svgrepo-com.svg" />
+    <Asset id="tex.animal.crocodile.svgrepo.com" type="texture" src="/svg/animal/crocodile-svgrepo-com.svg" />
+    <Asset id="tex.animal.dog.svgrepo.com" type="texture" src="/svg/animal/dog-svgrepo-com.svg" />
+    <Asset id="tex.animal.duck.svgrepo.com" type="texture" src="/svg/animal/duck-svgrepo-com.svg" />
+    <Asset id="tex.animal.elephant.svgrepo.com" type="texture" src="/svg/animal/elephant-svgrepo-com.svg" />
+    <Asset id="tex.animal.elk.svgrepo.com" type="texture" src="/svg/animal/elk-svgrepo-com.svg" />
+    <Asset id="tex.animal.fish.svgrepo.com" type="texture" src="/svg/animal/fish-svgrepo-com.svg" />
+    <Asset id="tex.animal.frog.svgrepo.com" type="texture" src="/svg/animal/frog-svgrepo-com.svg" />
+    <Asset id="tex.animal.giraffe.svgrepo.com" type="texture" src="/svg/animal/giraffe-svgrepo-com.svg" />
+    <Asset id="tex.animal.hippo.svgrepo.com" type="texture" src="/svg/animal/hippo-svgrepo-com.svg" />
+    <Asset id="tex.animal.husky.svgrepo.com" type="texture" src="/svg/animal/husky-svgrepo-com.svg" />
+    <Asset id="tex.animal.kangaroo.svgrepo.com" type="texture" src="/svg/animal/kangaroo-svgrepo-com.svg" />
+    <Asset id="tex.animal.lion.svgrepo.com" type="texture" src="/svg/animal/lion-svgrepo-com.svg" />
+    <Asset id="tex.animal.macaw.svgrepo.com" type="texture" src="/svg/animal/macaw-svgrepo-com.svg" />
+    <Asset id="tex.animal.manatee.svgrepo.com" type="texture" src="/svg/animal/manatee-svgrepo-com.svg" />
+    <Asset id="tex.animal.mianyang.svgrepo.com" type="texture" src="/svg/animal/mianyang-svgrepo-com.svg" />
+    <Asset id="tex.animal.monkey.svgrepo.com" type="texture" src="/svg/animal/monkey-svgrepo-com.svg" />
+    <Asset id="tex.animal.mouse.svgrepo.com" type="texture" src="/svg/animal/mouse-svgrepo-com.svg" />
+    <Asset id="tex.animal.octopus.svgrepo.com" type="texture" src="/svg/animal/octopus-svgrepo-com.svg" />
+    <Asset id="tex.animal.ostrich.svgrepo.com" type="texture" src="/svg/animal/ostrich-svgrepo-com.svg" />
+    <Asset id="tex.animal.owl.svgrepo.com" type="texture" src="/svg/animal/owl-svgrepo-com.svg" />
+    <Asset id="tex.animal.panda.svgrepo.com" type="texture" src="/svg/animal/panda-svgrepo-com.svg" />
+    <Asset id="tex.animal.pelican.svgrepo.com" type="texture" src="/svg/animal/pelican-svgrepo-com.svg" />
+    <Asset id="tex.animal.penguin.svgrepo.com" type="texture" src="/svg/animal/penguin-svgrepo-com.svg" />
+    <Asset id="tex.animal.pig.svgrepo.com" type="texture" src="/svg/animal/pig-svgrepo-com.svg" />
+    <Asset id="tex.animal.raccoon.svgrepo.com" type="texture" src="/svg/animal/raccoon-svgrepo-com.svg" />
+    <Asset id="tex.animal.rhino.svgrepo.com" type="texture" src="/svg/animal/rhino-svgrepo-com.svg" />
+    <Asset id="tex.animal.rooster.svgrepo.com" type="texture" src="/svg/animal/rooster-svgrepo-com.svg" />
+    <Asset id="tex.animal.sea.ray.svgrepo.com" type="texture" src="/svg/animal/sea-ray-svgrepo-com.svg" />
+    <Asset id="tex.animal.shark.svgrepo.com" type="texture" src="/svg/animal/shark-svgrepo-com.svg" />
+    <Asset id="tex.animal.sloth.svgrepo.com" type="texture" src="/svg/animal/sloth-svgrepo-com.svg" />
+    <Asset id="tex.animal.snake.svgrepo.com" type="texture" src="/svg/animal/snake-svgrepo-com.svg" />
+    <Asset id="tex.animal.spider.svgrepo.com" type="texture" src="/svg/animal/spider-svgrepo-com.svg" />
+    <Asset id="tex.animal.squirrel.svgrepo.com" type="texture" src="/svg/animal/squirrel-svgrepo-com.svg" />
+    <Asset id="tex.animal.swan.svgrepo.com" type="texture" src="/svg/animal/swan-svgrepo-com.svg" />
+    <Asset id="tex.animal.the.cow.svgrepo.com" type="texture" src="/svg/animal/the-cow-svgrepo-com.svg" />
+    <Asset id="tex.animal.tiger.svgrepo.com" type="texture" src="/svg/animal/tiger-svgrepo-com.svg" />
+    <Asset id="tex.animal.toucan.svgrepo.com" type="texture" src="/svg/animal/toucan-svgrepo-com.svg" />
+    <Asset id="tex.animal.turtle.svgrepo.com" type="texture" src="/svg/animal/turtle-svgrepo-com.svg" />
+    <Asset id="tex.animal.whale.svgrepo.com" type="texture" src="/svg/animal/whale-svgrepo-com.svg" />
+    <Asset id="tex.animal.white.rabbit.svgrepo.com" type="texture" src="/svg/animal/white-rabbit-svgrepo-com.svg" />
+    <Asset id="tex.chef.cooking.food.svgrepo.com" type="texture" src="/svg/chef-cooking-food-svgrepo-com.svg" />
     <Asset id="tex.coin" type="texture" src="/svg/coin.svg" />
+    <Asset id="tex.cooking.cut.kitchen.svgrepo.com" type="texture" src="/svg/cooking-cut-kitchen-svgrepo-com.svg" />
+    <Asset id="tex.cooking.kitchen.spatula.svgrepo.com" type="texture" src="/svg/cooking-kitchen-spatula-svgrepo-com.svg" />
+    <Asset id="tex.knife.sharp.utensil.dishware.cook.svgrepo.com" type="texture" src="/svg/knife-sharp-utensil-dishware-cook-svgrepo-com.svg" />
     <Asset id="tex.particle.white" type="texture" src="/svg/particle_white.svg" />
+    <Asset id="tex.people.agent.svgrepo.com" type="texture" src="/svg/people/agent-svgrepo-com.svg" />
+    <Asset id="tex.people.businessman.svgrepo.com" type="texture" src="/svg/people/businessman-svgrepo-com.svg" />
+    <Asset id="tex.people.chef.svgrepo.com" type="texture" src="/svg/people/chef-svgrepo-com.svg" />
+    <Asset id="tex.people.dick.svgrepo.com" type="texture" src="/svg/people/dick-svgrepo-com.svg" />
+    <Asset id="tex.people.girl.next.door.svgrepo.com" type="texture" src="/svg/people/girl-next-door-svgrepo-com.svg" />
+    <Asset id="tex.people.goblin.svgrepo.com" type="texture" src="/svg/people/goblin-svgrepo-com.svg" />
+    <Asset id="tex.people.grandfather.svgrepo.com" type="texture" src="/svg/people/grandfather-svgrepo-com.svg" />
+    <Asset id="tex.people.hip.hop.boy.svgrepo.com" type="texture" src="/svg/people/hip-hop-boy-svgrepo-com.svg" />
+    <Asset id="tex.people.indian.princess.svgrepo.com" type="texture" src="/svg/people/indian-princess-svgrepo-com.svg" />
+    <Asset id="tex.people.indian.svgrepo.com" type="texture" src="/svg/people/indian-svgrepo-com.svg" />
+    <Asset id="tex.people.knight.svgrepo.com" type="texture" src="/svg/people/knight-svgrepo-com.svg" />
+    <Asset id="tex.people.landlady.svgrepo.com" type="texture" src="/svg/people/landlady-svgrepo-com.svg" />
+    <Asset id="tex.people.literary.uncle.svgrepo.com" type="texture" src="/svg/people/literary-uncle-svgrepo-com.svg" />
+    <Asset id="tex.people.loli.svgrepo.com" type="texture" src="/svg/people/loli-svgrepo-com.svg" />
+    <Asset id="tex.people.princess.svgrepo.com" type="texture" src="/svg/people/princess-svgrepo-com.svg" />
+    <Asset id="tex.people.quack.svgrepo.com" type="texture" src="/svg/people/quack-svgrepo-com.svg" />
+    <Asset id="tex.people.santa.claus.svgrepo.com" type="texture" src="/svg/people/santa-claus-svgrepo-com.svg" />
+    <Asset id="tex.people.school.girl.svgrepo.com" type="texture" src="/svg/people/school-girl-svgrepo-com.svg" />
+    <Asset id="tex.people.thief.svgrepo.com" type="texture" src="/svg/people/thief-svgrepo-com.svg" />
+    <Asset id="tex.people.uncle.svgrepo.com" type="texture" src="/svg/people/uncle-svgrepo-com.svg" />
+    <Asset id="tex.whisk.cooking.utensil.dishware.svgrepo.com" type="texture" src="/svg/whisk-cooking-utensil-dishware-svgrepo-com.svg" />
   </Assets>
 </AssetManifest>

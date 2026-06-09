@@ -1,8 +1,8 @@
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
-import { RegisteredSystem } from "../types";
+import { RegisteredSystem } from "../../types";
 
-export const OrbCollectSystem: RegisteredSystem = {
-    name: "OrbCollectSystem",
+export const TestOrbCollectSystem: RegisteredSystem = {
+    name: "TestOrbCollectSystem",
     requires: [
         { id: "runtime.gameOver", kind: "boolean", access: "read" },
         { id: "runtime.score", kind: "number", access: "read" },
@@ -21,7 +21,7 @@ export const OrbCollectSystem: RegisteredSystem = {
         const collectibleByEntityId = context.behaviors.collectibleByEntityId;
         const player = context.states.entities.byTag.get("player")?.[0];
         if (!player) {
-            throw new Error("OrbCollectSystem 缺少 player 标签实体");
+            throw new Error("TestOrbCollectSystem 缺少 player 标签实体");
         }
         for (const orbEntity of orbs) {
             const collectible = collectibleByEntityId.get(orbEntity.entityId);
@@ -29,18 +29,18 @@ export const OrbCollectSystem: RegisteredSystem = {
         }
 
         return () => {
-        const gameOver = context.data.get("runtime.gameOver", "boolean", "OrbCollectSystem");
+        const gameOver = context.data.get("runtime.gameOver", "boolean", "TestOrbCollectSystem");
         if (gameOver) {
             return;
         }
 
-        const elapsedTime = context.data.get("runtime.elapsedTime", "number", "OrbCollectSystem");
-        const floatBaseY = context.data.get("orb.floatBaseY", "number", "OrbCollectSystem");
-        const floatAmplitude = context.data.get("orb.floatAmplitude", "number", "OrbCollectSystem");
-        const floatFrequency = context.data.get("orb.floatFrequency", "number", "OrbCollectSystem");
-        const collectDistance = context.data.get("orb.collectDistance", "number", "OrbCollectSystem");
-        const targetScore = context.data.get("targetScore", "number", "OrbCollectSystem");
-        const winMessage = context.data.get("orb.winMessage", "string", "OrbCollectSystem");
+        const elapsedTime = context.data.get("runtime.elapsedTime", "number", "TestOrbCollectSystem");
+        const floatBaseY = context.data.get("orb.floatBaseY", "number", "TestOrbCollectSystem");
+        const floatAmplitude = context.data.get("orb.floatAmplitude", "number", "TestOrbCollectSystem");
+        const floatFrequency = context.data.get("orb.floatFrequency", "number", "TestOrbCollectSystem");
+        const collectDistance = context.data.get("orb.collectDistance", "number", "TestOrbCollectSystem");
+        const targetScore = context.data.get("targetScore", "number", "TestOrbCollectSystem");
+        const winMessage = context.data.get("orb.winMessage", "string", "TestOrbCollectSystem");
 
         for (let i = 0; i < orbs.length; i += 1) {
             const orbEntity = orbs[i];
@@ -57,12 +57,12 @@ export const OrbCollectSystem: RegisteredSystem = {
                 collectible.collected = true;
                 orb.isVisible = false;
                 context.services.createBurstParticles(orb.position.clone());
-                const score = context.data.get("runtime.score", "number", "OrbCollectSystem");
+                const score = context.data.get("runtime.score", "number", "TestOrbCollectSystem");
                 const nextScore = score + collectible.value;
-                context.data.set("runtime.score", "number", nextScore, "OrbCollectSystem");
+                context.data.set("runtime.score", "number", nextScore, "TestOrbCollectSystem");
                 context.services.updateHud();
                 if (nextScore >= targetScore) {
-                    context.data.set("runtime.gameOver", "boolean", true, "OrbCollectSystem");
+                    context.data.set("runtime.gameOver", "boolean", true, "TestOrbCollectSystem");
                     context.services.showMessage(winMessage);
                     break;
                 }

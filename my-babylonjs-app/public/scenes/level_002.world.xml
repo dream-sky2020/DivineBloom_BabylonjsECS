@@ -62,13 +62,13 @@
   </DataModel>
   <Systems>
     <System name="TimeSystem" enabled="true" />
-    <System name="UiInputSystem" enabled="true" />
+    <System name="TestUiInputSystem" enabled="true" />
     <System name="SceneSwitchSystem" enabled="true" />
     <System name="RestartSystem" enabled="true" />
-    <System name="PlayerMovementSystem" enabled="true" />
+    <System name="TestPlayerMovementSystem" enabled="true" />
     <System name="InvincibilitySystem" enabled="true" />
-    <System name="EnemyChaseSystem" enabled="true" />
-    <System name="OrbCollectSystem" enabled="true" />
+    <System name="TestEnemyChaseSystem" enabled="true" />
+    <System name="TestOrbCollectSystem" enabled="true" />
   </Systems>
 
   <References>

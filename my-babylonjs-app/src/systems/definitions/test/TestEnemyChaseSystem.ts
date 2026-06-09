@@ -1,8 +1,8 @@
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
-import { RegisteredSystem } from "../types";
+import { RegisteredSystem } from "../../types";
 
-export const EnemyChaseSystem: RegisteredSystem = {
-    name: "EnemyChaseSystem",
+export const TestEnemyChaseSystem: RegisteredSystem = {
+    name: "TestEnemyChaseSystem",
     requires: [
         { id: "runtime.gameOver", kind: "boolean", access: "read" },
         { id: "runtime.invincibleTime", kind: "number", access: "read" },
@@ -22,22 +22,22 @@ export const EnemyChaseSystem: RegisteredSystem = {
         const enemies = context.states.entities.byTag.get("enemy") ?? [];
         const player = context.states.entities.byTag.get("player")?.[0];
         if (!player) {
-            throw new Error("EnemyChaseSystem 缺少 player 标签实体");
+            throw new Error("TestEnemyChaseSystem 缺少 player 标签实体");
         }
 
         return (deltaTime) => {
-        const gameOver = context.data.get("runtime.gameOver", "boolean", "EnemyChaseSystem");
+        const gameOver = context.data.get("runtime.gameOver", "boolean", "TestEnemyChaseSystem");
         if (gameOver) {
             return;
         }
 
-        const turnCurrentWeight = context.data.get("enemy.turnCurrentWeight", "number", "EnemyChaseSystem");
-        const turnTargetWeight = context.data.get("enemy.turnTargetWeight", "number", "EnemyChaseSystem");
-        const hitDistance = context.data.get("enemy.hitDistance", "number", "EnemyChaseSystem");
-        const invincibleDuration = context.data.get("enemy.invincibleDurationOnHit", "number", "EnemyChaseSystem");
-        const enemyRespawnY = context.data.get("enemy.respawnY", "number", "EnemyChaseSystem");
-        const gameBound = context.data.get("gameBound", "number", "EnemyChaseSystem");
-        const gameOverMessage = context.data.get("enemy.gameOverMessage", "string", "EnemyChaseSystem");
+        const turnCurrentWeight = context.data.get("enemy.turnCurrentWeight", "number", "TestEnemyChaseSystem");
+        const turnTargetWeight = context.data.get("enemy.turnTargetWeight", "number", "TestEnemyChaseSystem");
+        const hitDistance = context.data.get("enemy.hitDistance", "number", "TestEnemyChaseSystem");
+        const invincibleDuration = context.data.get("enemy.invincibleDurationOnHit", "number", "TestEnemyChaseSystem");
+        const enemyRespawnY = context.data.get("enemy.respawnY", "number", "TestEnemyChaseSystem");
+        const gameBound = context.data.get("gameBound", "number", "TestEnemyChaseSystem");
+        const gameOverMessage = context.data.get("enemy.gameOverMessage", "string", "TestEnemyChaseSystem");
         const enemyAiByEntityId = context.behaviors.enemyAiByEntityId;
         const movementByEntityId = context.behaviors.movementByEntityId;
 
@@ -76,12 +76,12 @@ export const EnemyChaseSystem: RegisteredSystem = {
                 enemy.mesh.position.z = context.services.clamp(enemy.mesh.position.z, -gameBound, gameBound);
             }
 
-            const invincibleTime = context.data.get("runtime.invincibleTime", "number", "EnemyChaseSystem");
+            const invincibleTime = context.data.get("runtime.invincibleTime", "number", "TestEnemyChaseSystem");
             if (invincibleTime <= 0 && Vector3.Distance(enemy.mesh.position, player.mesh.position) < hitDistance) {
-                const hp = context.data.get("runtime.hp", "number", "EnemyChaseSystem");
+                const hp = context.data.get("runtime.hp", "number", "TestEnemyChaseSystem");
                 const nextHp = hp - 1;
-                context.data.set("runtime.hp", "number", nextHp, "EnemyChaseSystem");
-                context.data.set("runtime.invincibleTime", "number", invincibleDuration, "EnemyChaseSystem");
+                context.data.set("runtime.hp", "number", nextHp, "TestEnemyChaseSystem");
+                context.data.set("runtime.invincibleTime", "number", invincibleDuration, "TestEnemyChaseSystem");
                 enemy.mesh.position = new Vector3(
                     context.services.randomInRange(-gameBound, gameBound),
                     enemyRespawnY,
@@ -89,7 +89,7 @@ export const EnemyChaseSystem: RegisteredSystem = {
                 );
                 context.services.updateHud();
                 if (nextHp <= 0) {
-                    context.data.set("runtime.gameOver", "boolean", true, "EnemyChaseSystem");
+                    context.data.set("runtime.gameOver", "boolean", true, "TestEnemyChaseSystem");
                     context.services.showMessage(gameOverMessage);
                 }
             }

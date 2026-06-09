@@ -3,11 +3,13 @@ import { AdvancedDynamicTexture } from "@babylonjs/gui/2D/advancedDynamicTexture
 import { Button } from "@babylonjs/gui/2D/controls/button";
 import { Checkbox } from "@babylonjs/gui/2D/controls/checkbox";
 import { Control } from "@babylonjs/gui/2D/controls/control";
+import { InputText } from "@babylonjs/gui/2D/controls/inputText";
 import { Slider } from "@babylonjs/gui/2D/controls/sliders/slider";
 import { TextBlock } from "@babylonjs/gui/2D/controls/textBlock";
 import { GameDataAccessor } from "../systems/dataAccessor";
 import {
     UiButtonNodeConfig,
+    UiInputNodeConfig,
     UiLayoutConfig,
     UiSliderNodeConfig,
     UiTextNodeConfig,
@@ -91,6 +93,14 @@ const writeNumber = (data: GameDataAccessor, key: string, value: number) => {
     data.set(key, "number", value, "XmlUi");
 };
 
+const writeString = (data: GameDataAccessor, key: string, value: string) => {
+    const schema = data.getSchema(key);
+    if (!schema || schema.valueType !== "string" || !schema.mutable) {
+        throw new Error(`UI 尝试写入不可用字符串字段: ${key}`);
+    }
+    data.set(key, "string", value, "XmlUi");
+};
+
 const resolveTextTemplate = (template: string, data: GameDataAccessor): string => (
     template.replace(/\{([^}]+)\}/g, (_, token: string) => readDataAsString(data, token.trim()))
 );
@@ -107,6 +117,9 @@ const createTextNode = (config: UiTextNodeConfig): TextBlock => {
     textBlock.topInPixels = config.top;
     textBlock.resizeToFit = true;
     textBlock.zIndex = 20;
+    if (config.fontFamily) {
+        textBlock.fontFamily = config.fontFamily;
+    }
     return textBlock;
 };
 
@@ -124,6 +137,9 @@ const createButtonNode = (config: UiButtonNodeConfig): Button => {
     button.cornerRadius = 8;
     button.thickness = 0;
     button.zIndex = 20;
+    if (config.fontFamily) {
+        button.fontFamily = config.fontFamily;
+    }
     return button;
 };
 
@@ -152,6 +168,9 @@ const createToggleNode = (config: UiToggleNodeConfig): { checkbox: Checkbox; lab
     label.widthInPixels = config.width;
     label.heightInPixels = config.height;
     label.zIndex = 20;
+    if (config.fontFamily) {
+        label.fontFamily = config.fontFamily;
+    }
     return { checkbox, label };
 };
 
@@ -170,6 +189,28 @@ const createSliderNode = (config: UiSliderNodeConfig): Slider => {
     slider.topInPixels = config.top;
     slider.zIndex = 20;
     return slider;
+};
+
+const createInputNode = (config: UiInputNodeConfig): InputText => {
+    const input = new InputText(config.id, "");
+    input.widthInPixels = config.width;
+    input.heightInPixels = config.height;
+    input.color = config.color;
+    input.background = config.background;
+    input.fontSize = config.fontSize;
+    input.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+    input.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+    input.leftInPixels = config.left;
+    input.topInPixels = config.top;
+    input.zIndex = 20;
+    input.thickness = 0;
+    if (config.placeholder) {
+        input.placeholderText = config.placeholder;
+    }
+    if (config.fontFamily) {
+        input.fontFamily = config.fontFamily;
+    }
+    return input;
 };
 
 export const createBabylonXmlUi = ({ scene, data, layout }: CreateBabylonXmlUiArgs): BabylonXmlUiRuntime => {
@@ -204,6 +245,14 @@ export const createBabylonXmlUi = ({ scene, data, layout }: CreateBabylonXmlUiAr
         texture.addControl(slider);
         return { config, slider };
     });
+    const inputs = layout.inputs.map((config) => {
+        const input = createInputNode(config);
+        input.onTextChangedObservable.add((control) => {
+            writeString(data, config.bindValue, control.text);
+        });
+        texture.addControl(input);
+        return { config, input };
+    });
 
     const refresh = () => {
         for (const { config, textBlock } of textBlocks) {
@@ -214,6 +263,9 @@ export const createBabylonXmlUi = ({ scene, data, layout }: CreateBabylonXmlUiAr
             }
             if (config.bindVisible) {
                 textBlock.isVisible = readDataAsBoolean(data, config.bindVisible);
+            }
+            if (config.bindFontFamily) {
+                textBlock.fontFamily = readDataAsString(data, config.bindFontFamily);
             }
         }
         for (const { config, button } of buttons) {
@@ -239,6 +291,18 @@ export const createBabylonXmlUi = ({ scene, data, layout }: CreateBabylonXmlUiAr
             }
             if (config.bindVisible) {
                 slider.isVisible = readDataAsBoolean(data, config.bindVisible);
+            }
+        }
+        for (const { config, input } of inputs) {
+            const value = readDataAsString(data, config.bindValue);
+            if (input.text !== value) {
+                input.text = value;
+            }
+            if (config.bindVisible) {
+                input.isVisible = readDataAsBoolean(data, config.bindVisible);
+            }
+            if (config.bindFontFamily) {
+                input.fontFamily = readDataAsString(data, config.bindFontFamily);
             }
         }
     };

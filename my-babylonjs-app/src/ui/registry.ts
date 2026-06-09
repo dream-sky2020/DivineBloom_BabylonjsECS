@@ -3,6 +3,7 @@ export const REGISTERED_UI_NODE_TYPES = [
     "Button",
     "Toggle",
     "Slider",
+    "Input",
 ] as const;
 
 const REGISTERED_UI_NODE_TYPE_SET = new Set<string>(REGISTERED_UI_NODE_TYPES);

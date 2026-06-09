@@ -62,6 +62,13 @@ export const createBehaviors = ({ spawnedEntities, randomInRange }: CreateBehavi
     const movementByEntityId = new Map<string, { speed: number }>();
     const collectibleByEntityId = new Map<string, { value: number; collected: boolean }>();
     const playerByEntityId = new Map<string, { isPlayer: boolean }>();
+    const turnBasedUnitByEntityId = new Map<string, {
+        hp: number;
+        attack: number;
+        defense: number;
+        agility: number;
+        actionPoints: number;
+    }>();
 
     for (const entity of spawnedEntities) {
         const hasEnemyTag = entity.tags.includes("enemy");
@@ -95,6 +102,16 @@ export const createBehaviors = ({ spawnedEntities, randomInRange }: CreateBehavi
                 isPlayer: parseBooleanOrFallback(entity.behaviorSeed.Player?.isPlayer, true),
             });
         }
+
+        if (entity.behaviorSeed.TurnBasedUnit || entity.tags.includes("turn-unit")) {
+            turnBasedUnitByEntityId.set(entity.entityId, {
+                hp: parseNumberOrFallback(entity.behaviorSeed.TurnBasedUnit?.hp, 100),
+                attack: parseNumberOrFallback(entity.behaviorSeed.TurnBasedUnit?.attack, 20),
+                defense: parseNumberOrFallback(entity.behaviorSeed.TurnBasedUnit?.defense, 10),
+                agility: parseNumberOrFallback(entity.behaviorSeed.TurnBasedUnit?.agility, 10),
+                actionPoints: parseNumberOrFallback(entity.behaviorSeed.TurnBasedUnit?.actionPoints, 2),
+            });
+        }
     }
 
     return {
@@ -102,5 +119,6 @@ export const createBehaviors = ({ spawnedEntities, randomInRange }: CreateBehavi
         movementByEntityId,
         collectibleByEntityId,
         playerByEntityId,
+        turnBasedUnitByEntityId,
     };
 };

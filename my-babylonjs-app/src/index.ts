@@ -5,8 +5,17 @@ import { createSceneRuntime } from "./scene/sceneRuntime";
 import { createDomGameUi } from "./ui/domGameUi";
 import { createWorldFlowController } from "./world/worldFlowController";
 
-const fallbackProjectPath = "/project/project.xml";
-const fallbackWorldPaths = ["/scenes/level_001.world.xml"];
+const defaultProjectFromHtml = document.body.dataset.defaultProject;
+const defaultWorldsFromHtml = (document.body.dataset.defaultWorlds ?? "")
+    .split(",")
+    .map((worldPath) => worldPath.trim())
+    .filter((worldPath) => worldPath.length > 0);
+const fallbackProjectPath = defaultProjectFromHtml && defaultProjectFromHtml.length > 0
+    ? defaultProjectFromHtml
+    : "/project/project.xml";
+const fallbackWorldPaths = defaultWorldsFromHtml.length > 0
+    ? defaultWorldsFromHtml
+    : ["/scenes/level_001.world.xml"];
 const isDeveloperMode =
     new URLSearchParams(window.location.search).get("dev") === "1"
     || window.location.hostname === "localhost"

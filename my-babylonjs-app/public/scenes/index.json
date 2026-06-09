@@ -1,7 +1,7 @@
 {
-  "project": "/project/project.xml",
+  "project": "/project/erfimo.project.xml",
   "worlds": [
-    "/scenes/level_001.world.xml",
-    "/scenes/level_002.world.xml"
+    "/scenes/erfimo_battle.world.xml",
+    "/scenes/erfimo_story.world.xml"
   ]
 }

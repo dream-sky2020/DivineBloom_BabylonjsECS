@@ -1,7 +1,7 @@
-import { RegisteredSystem } from "../types";
+import { RegisteredSystem } from "../../types";
 
-export const PlayerMovementSystem: RegisteredSystem = {
-    name: "PlayerMovementSystem",
+export const TestPlayerMovementSystem: RegisteredSystem = {
+    name: "TestPlayerMovementSystem",
     requires: [
         { id: "runtime.gameOver", kind: "boolean", access: "read" },
         { id: "runtime.input.moveX", kind: "number", access: "read" },
@@ -17,40 +17,40 @@ export const PlayerMovementSystem: RegisteredSystem = {
     create: (context) => {
         const player = context.states.entities.byTag.get("player")?.[0];
         if (!player) {
-            throw new Error("PlayerMovementSystem 缺少 player 标签实体");
+            throw new Error("TestPlayerMovementSystem 缺少 player 标签实体");
         }
         const trail = player.trail;
         if (!trail) {
-            throw new Error("PlayerMovementSystem 缺少玩家 trail 引用");
+            throw new Error("TestPlayerMovementSystem 缺少玩家 trail 引用");
         }
         const movementByEntityId = context.behaviors.movementByEntityId;
 
         return (deltaTime) => {
-        const gameOver = context.data.get("runtime.gameOver", "boolean", "PlayerMovementSystem");
+        const gameOver = context.data.get("runtime.gameOver", "boolean", "TestPlayerMovementSystem");
         if (gameOver) {
             trail.emitRate = 0;
             return;
         }
 
-        const moveX = context.data.get("runtime.input.moveX", "number", "PlayerMovementSystem");
-        const moveZ = context.data.get("runtime.input.moveZ", "number", "PlayerMovementSystem");
+        const moveX = context.data.get("runtime.input.moveX", "number", "TestPlayerMovementSystem");
+        const moveZ = context.data.get("runtime.input.moveZ", "number", "TestPlayerMovementSystem");
         const hasInput = moveX !== 0 || moveZ !== 0;
-        const speedBoostKeyboard = context.data.get("runtime.input.speedBoost", "boolean", "PlayerMovementSystem");
-        const speedBoostFromUi = context.data.get("runtime.input.speedBoostFromUi", "boolean", "PlayerMovementSystem");
+        const speedBoostKeyboard = context.data.get("runtime.input.speedBoost", "boolean", "TestPlayerMovementSystem");
+        const speedBoostFromUi = context.data.get("runtime.input.speedBoostFromUi", "boolean", "TestPlayerMovementSystem");
         const speedMultiplier = speedBoostFromUi
-            ? context.data.get("runtime.ui.speedBoostScale", "number", "PlayerMovementSystem")
+            ? context.data.get("runtime.ui.speedBoostScale", "number", "TestPlayerMovementSystem")
             : speedBoostKeyboard
-                ? context.data.get("playerSpeedBoostMultiplier", "number", "PlayerMovementSystem")
+                ? context.data.get("playerSpeedBoostMultiplier", "number", "TestPlayerMovementSystem")
                 : 1;
         const movement = movementByEntityId.get(player.entityId);
         if (!movement) {
-            throw new Error("PlayerMovementSystem 缺少玩家 MovementBehavior");
+            throw new Error("TestPlayerMovementSystem 缺少玩家 MovementBehavior");
         }
         const effectiveSpeed = movement.speed * speedMultiplier;
-        const movingEmitRate = context.data.get("player.trailEmitRateMoving", "number", "PlayerMovementSystem");
-        const idleEmitRate = context.data.get("player.trailEmitRateIdle", "number", "PlayerMovementSystem");
+        const movingEmitRate = context.data.get("player.trailEmitRateMoving", "number", "TestPlayerMovementSystem");
+        const idleEmitRate = context.data.get("player.trailEmitRateIdle", "number", "TestPlayerMovementSystem");
         trail.emitRate = hasInput ? movingEmitRate : idleEmitRate;
-        const gameBound = context.data.get("gameBound", "number", "PlayerMovementSystem");
+        const gameBound = context.data.get("gameBound", "number", "TestPlayerMovementSystem");
         player.mesh.position.x += moveX * effectiveSpeed * deltaTime;
         player.mesh.position.z += moveZ * effectiveSpeed * deltaTime;
         player.mesh.position.x = context.services.clamp(player.mesh.position.x, -gameBound, gameBound);

@@ -1,0 +1,16 @@
+<Prefab version="1" id="erfimo.unit.combat" groups="erfimo,turn-unit,combatant">
+  <Root>
+    <Transform position="0,0.9,0" rotation="0,0,0" scaling="1,1,1" />
+    <Renderable kind="primitive" assetId="mesh.player.box" size="1.7">
+      <Material type="standard" diffuseColor="#c7e4ff" specularColor="#000000" />
+    </Renderable>
+  </Root>
+  <Behaviors>
+    <Movement speed="0" />
+    <TurnBasedUnit hp="100" attack="20" defense="10" agility="12" actionPoints="2" />
+  </Behaviors>
+  <Exportables>
+    <Field path="Transform.position" valueType="vector3" />
+    <Field path="Renderable.Material.diffuseColor" valueType="color3" />
+  </Exportables>
+</Prefab>

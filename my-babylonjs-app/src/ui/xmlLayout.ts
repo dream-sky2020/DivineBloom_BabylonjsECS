@@ -51,6 +51,7 @@ export const loadUiLayout = async (path: string): Promise<UiLayoutConfig> => {
     const buttonNodes = children.filter((node) => node.tagName === "Button");
     const toggleNodes = children.filter((node) => node.tagName === "Toggle");
     const sliderNodes = children.filter((node) => node.tagName === "Slider");
+    const inputNodes = children.filter((node) => node.tagName === "Input");
 
     const texts = textNodes.map((node) => {
         const id = requiredAttr(node, "id");
@@ -65,6 +66,8 @@ export const loadUiLayout = async (path: string): Promise<UiLayoutConfig> => {
             text,
             bindText,
             bindVisible: node.getAttribute("bindVisible") ?? node.getAttribute("bind:visible") ?? undefined,
+            fontFamily: node.getAttribute("fontFamily") ?? undefined,
+            bindFontFamily: node.getAttribute("bindFontFamily") ?? node.getAttribute("bind:fontFamily") ?? undefined,
             left: parseNumber(node.getAttribute("left"), 0, `UI ${uiId} Text(${id}).left`),
             top: parseNumber(node.getAttribute("top"), 0, `UI ${uiId} Text(${id}).top`),
             color: node.getAttribute("color") ?? "#ffffff",
@@ -85,6 +88,7 @@ export const loadUiLayout = async (path: string): Promise<UiLayoutConfig> => {
             fontSize: parseNumber(node.getAttribute("fontSize"), 20, `UI ${uiId} Button(${id}).fontSize`),
             color: node.getAttribute("color") ?? "#ffffff",
             background: node.getAttribute("background") ?? "#2f6fed",
+            fontFamily: node.getAttribute("fontFamily") ?? undefined,
         };
     });
     const toggles = toggleNodes.map((node) => {
@@ -100,6 +104,7 @@ export const loadUiLayout = async (path: string): Promise<UiLayoutConfig> => {
             height: parseNumber(node.getAttribute("height"), 26, `UI ${uiId} Toggle(${id}).height`),
             fontSize: parseNumber(node.getAttribute("fontSize"), 18, `UI ${uiId} Toggle(${id}).fontSize`),
             color: node.getAttribute("color") ?? "#ffffff",
+            fontFamily: node.getAttribute("fontFamily") ?? undefined,
         };
     });
     const sliders = sliderNodes.map((node) => {
@@ -119,6 +124,24 @@ export const loadUiLayout = async (path: string): Promise<UiLayoutConfig> => {
             thumbColor: node.getAttribute("thumbColor") ?? "#8bd3ff",
         };
     });
+    const inputs = inputNodes.map((node) => {
+        const id = requiredAttr(node, "id");
+        return {
+            id,
+            bindValue: node.getAttribute("bindValue") ?? requiredAttr(node, "bind:value"),
+            bindVisible: node.getAttribute("bindVisible") ?? node.getAttribute("bind:visible") ?? undefined,
+            left: parseNumber(node.getAttribute("left"), 0, `UI ${uiId} Input(${id}).left`),
+            top: parseNumber(node.getAttribute("top"), 0, `UI ${uiId} Input(${id}).top`),
+            width: parseNumber(node.getAttribute("width"), 320, `UI ${uiId} Input(${id}).width`),
+            height: parseNumber(node.getAttribute("height"), 46, `UI ${uiId} Input(${id}).height`),
+            color: node.getAttribute("color") ?? "#ffffff",
+            background: node.getAttribute("background") ?? "rgba(0, 0, 0, 0.5)",
+            fontSize: parseNumber(node.getAttribute("fontSize"), 24, `UI ${uiId} Input(${id}).fontSize`),
+            placeholder: node.getAttribute("placeholder") ?? undefined,
+            fontFamily: node.getAttribute("fontFamily") ?? undefined,
+            bindFontFamily: node.getAttribute("bindFontFamily") ?? node.getAttribute("bind:fontFamily") ?? undefined,
+        };
+    });
 
     return {
         id: uiId,
@@ -126,5 +149,6 @@ export const loadUiLayout = async (path: string): Promise<UiLayoutConfig> => {
         buttons,
         toggles,
         sliders,
+        inputs,
     };
 };

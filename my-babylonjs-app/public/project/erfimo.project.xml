@@ -1,0 +1,43 @@
+<Project version="1" id="ERFIMO">
+  <DataModel>
+    <GlobalData>
+      <State key="project.ui.mainMenuVisible" value="true" valueType="boolean" />
+      <State key="gameBound" value="16" valueType="number" />
+      <State key="targetScore" value="10" valueType="number" />
+      <State key="runtime.score" value="0" valueType="number" />
+      <State key="runtime.hp" value="3" valueType="number" />
+      <State key="runtime.elapsedTime" value="0" valueType="number" />
+      <State key="runtime.input.upPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.downPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.leftPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.rightPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.restartPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.prevWorldPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.nextWorldPressed" value="false" valueType="boolean" />
+      <State key="runtime.input.speedBoost" value="false" valueType="boolean" />
+      <State key="runtime.input.moveX" value="0" valueType="number" />
+      <State key="runtime.input.moveZ" value="0" valueType="number" />
+      <State key="runtime.ui.nextDialoguePressed" value="false" valueType="boolean" />
+      <State key="runtime.ui.selectedChoiceIndex" value="0" valueType="number" />
+      <State key="runtime.ui.autoPlayEnabled" value="false" valueType="boolean" />
+      <State key="runtime.ui.skipPressed" value="false" valueType="boolean" />
+      <State key="runtime.ui.selectedActionId" value="" valueType="string" />
+      <State key="runtime.ui.selectedTargetEntityId" value="" valueType="string" />
+      <State key="runtime.ui.playbackSpeedMultiplier" value="1" valueType="number" />
+      <State key="runtime.ui.dialogueFontFamily" value="Microsoft YaHei" valueType="string" />
+    </GlobalData>
+    <InputBindings>
+      <Binding target="runtime.input.upPressed" keys="KeyW,ArrowUp" mode="hold" scale="1" />
+      <Binding target="runtime.input.downPressed" keys="KeyS,ArrowDown" mode="hold" scale="1" />
+      <Binding target="runtime.input.leftPressed" keys="KeyA,ArrowLeft" mode="hold" scale="1" />
+      <Binding target="runtime.input.rightPressed" keys="KeyD,ArrowRight" mode="hold" scale="1" />
+      <Binding target="runtime.input.restartPressed" keys="KeyR" mode="hold" scale="1" />
+      <Binding target="runtime.input.prevWorldPressed" keys="F7" mode="hold" scale="1" />
+      <Binding target="runtime.input.nextWorldPressed" keys="F8" mode="hold" scale="1" />
+      <Binding target="runtime.input.speedBoost" keys="ShiftLeft,ShiftRight" mode="toggle" scale="1" />
+    </InputBindings>
+  </DataModel>
+  <References>
+    <UiRef src="/ui/global/main_menu.ui.xml" />
+  </References>
+</Project>

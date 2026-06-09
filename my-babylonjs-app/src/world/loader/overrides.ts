@@ -86,6 +86,22 @@ export const applyOverrides = (prefab: PrefabDef, overrides: WorldOverrideDef[])
                 continue;
             }
 
+            if (behaviorName === "TurnBasedUnit") {
+                if (
+                    fieldName !== "hp"
+                    && fieldName !== "attack"
+                    && fieldName !== "defense"
+                    && fieldName !== "agility"
+                    && fieldName !== "actionPoints"
+                ) {
+                    throw new Error(`Prefab ${prefab.id} TurnBasedUnit 不支持字段: ${fieldName}`);
+                }
+                assertValueType("number");
+                parseNumber(override.value, 0, `Prefab ${prefab.id} Behavior 覆盖 ${override.path}`);
+                setBehaviorStringValue("TurnBasedUnit", fieldName);
+                continue;
+            }
+
             throw new Error(`Prefab ${prefab.id} 不支持的 Behavior: ${behaviorName}`);
         }
 

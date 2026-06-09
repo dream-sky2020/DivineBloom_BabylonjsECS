@@ -1,0 +1,53 @@
+<World version="1" id="erfimo_battle">
+  <SceneConfig clearColor="#14131f" />
+  <CameraConfig>
+    <Camera
+      id="main"
+      type="arcRotate"
+      alpha="0.82"
+      beta="1.06"
+      radius="28"
+      target="0,0,0"
+      lowerRadiusLimit="18"
+      upperRadiusLimit="36"
+      attachControl="true" />
+  </CameraConfig>
+  <DataModel>
+    <GlobalData>
+      <State key="gameBound" value="12" valueType="number" />
+      <State key="runtime.battle.confirmPressed" value="false" valueType="boolean" />
+      <State key="runtime.battle.turnCounter" value="1" valueType="number" />
+      <State key="runtime.battle.activeSide" value="ally" valueType="string" />
+      <State key="runtime.battle.phase" value="command" valueType="string" />
+      <State key="runtime.battle.logText" value="ERFIMO Battle Ready" valueType="string" />
+    </GlobalData>
+    <InputBindings>
+      <Binding target="runtime.battle.confirmPressed" keys="Enter,Space" mode="hold" scale="1" />
+    </InputBindings>
+  </DataModel>
+  <Systems>
+    <System name="TimeSystem" enabled="true" />
+    <System name="BattleUiInputSystem" enabled="true" />
+    <System name="SceneSwitchSystem" enabled="true" />
+  </Systems>
+  <References>
+    <AssetManifest src="/manifests/assets.manifest.xml" />
+    <PrefabRef id="erfimo.unit.combat" src="/prefabs/erfimo_turn_unit.prefab.xml" />
+  </References>
+  <Entities>
+    <Instance id="erfimo_ally_01" prefab="erfimo.unit.combat" tags="player,ally">
+      <Override path="Transform.position" value="-4,0.9,0" valueType="vector3" />
+      <Override path="Behaviors.TurnBasedUnit.hp" value="120" valueType="number" />
+      <Override path="Behaviors.TurnBasedUnit.attack" value="28" valueType="number" />
+      <Override path="Behaviors.TurnBasedUnit.defense" value="14" valueType="number" />
+      <Override path="Renderable.Material.diffuseColor" value="#5ad4ff" valueType="color3" />
+    </Instance>
+    <Instance id="erfimo_enemy_01" prefab="erfimo.unit.combat" tags="enemy">
+      <Override path="Transform.position" value="4,0.9,0" valueType="vector3" />
+      <Override path="Behaviors.TurnBasedUnit.hp" value="100" valueType="number" />
+      <Override path="Behaviors.TurnBasedUnit.attack" value="24" valueType="number" />
+      <Override path="Behaviors.TurnBasedUnit.defense" value="10" valueType="number" />
+      <Override path="Renderable.Material.diffuseColor" value="#ff6f88" valueType="color3" />
+    </Instance>
+  </Entities>
+</World>

@@ -3,6 +3,8 @@ export type UiTextNodeConfig = {
     text?: string;
     bindText?: string;
     bindVisible?: string;
+    fontFamily?: string;
+    bindFontFamily?: string;
     left: number;
     top: number;
     color: string;
@@ -21,6 +23,7 @@ export type UiButtonNodeConfig = {
     fontSize: number;
     color: string;
     background: string;
+    fontFamily?: string;
 };
 
 export type UiToggleNodeConfig = {
@@ -34,6 +37,7 @@ export type UiToggleNodeConfig = {
     height: number;
     fontSize: number;
     color: string;
+    fontFamily?: string;
 };
 
 export type UiSliderNodeConfig = {
@@ -51,10 +55,27 @@ export type UiSliderNodeConfig = {
     thumbColor: string;
 };
 
+export type UiInputNodeConfig = {
+    id: string;
+    bindValue: string;
+    bindVisible?: string;
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+    color: string;
+    background: string;
+    fontSize: number;
+    placeholder?: string;
+    fontFamily?: string;
+    bindFontFamily?: string;
+};
+
 export type UiLayoutConfig = {
     id: string;
     texts: UiTextNodeConfig[];
     buttons: UiButtonNodeConfig[];
     toggles: UiToggleNodeConfig[];
     sliders: UiSliderNodeConfig[];
+    inputs: UiInputNodeConfig[];
 };

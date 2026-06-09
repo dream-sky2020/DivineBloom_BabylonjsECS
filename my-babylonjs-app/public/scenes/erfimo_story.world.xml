@@ -1,0 +1,37 @@
+<World version="1" id="erfimo_story">
+  <SceneConfig clearColor="#120f1a" />
+  <CameraConfig>
+    <Camera
+      id="main"
+      type="arcRotate"
+      alpha="1.05"
+      beta="1.15"
+      radius="30"
+      target="0,0,0"
+      lowerRadiusLimit="20"
+      upperRadiusLimit="40"
+      attachControl="false" />
+  </CameraConfig>
+  <DataModel>
+    <GlobalData>
+      <State key="gameBound" value="10" valueType="number" />
+      <State key="runtime.story.advancePressed" value="false" valueType="boolean" />
+      <State key="runtime.story.lineIndex" value="0" valueType="number" />
+      <State key="runtime.story.sceneTitle" value="ERFIMO - Story" valueType="string" />
+      <State key="runtime.story.currentLine" value="在风暴来临前，命运齿轮已经开始转动。" valueType="string" />
+    </GlobalData>
+    <InputBindings>
+      <Binding target="runtime.story.advancePressed" keys="Space,Enter" mode="hold" scale="1" />
+    </InputBindings>
+  </DataModel>
+  <Systems>
+    <System name="TimeSystem" enabled="true" />
+    <System name="StoryUiInputSystem" enabled="true" />
+    <System name="SceneSwitchSystem" enabled="true" />
+  </Systems>
+  <References>
+    <AssetManifest src="/manifests/assets.manifest.xml" />
+    <UiRef src="/ui/world/story.ui.xml" />
+  </References>
+  <Entities />
+</World>

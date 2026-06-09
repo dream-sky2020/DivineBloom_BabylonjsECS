@@ -9,7 +9,7 @@ import { Scene } from "@babylonjs/core/scene";
 import { InputAdapter } from "../input/types";
 import { createStateRegistry } from "../states/registry";
 import { createGameDataAccessor } from "../systems/dataAccessor";
-import { createSystemRegistry } from "../systems/registry";
+import { createSystemRegistryForNames } from "../systems/registry";
 import { createGameServices } from "../systems/services";
 import { GameSystemContext } from "../systems/types";
 import { DomGameUi } from "../ui/domGameUi";
@@ -110,10 +110,13 @@ export const createGameScene = ({
         services,
     };
 
-    const systemRegistry = createSystemRegistry(systemContext);
+    const enabledSystems = world.systems.filter((system) => system.enabled);
+    const systemRegistry = createSystemRegistryForNames(
+        systemContext,
+        enabledSystems.map((system) => system.name),
+    );
 
-    const activeSystems = world.systems
-        .filter((system) => system.enabled)
+    const activeSystems = enabledSystems
         .map((system) => {
             const runtimeSystem = systemRegistry.get(system.name);
             if (!runtimeSystem) {

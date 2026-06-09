@@ -3,6 +3,7 @@ export const REGISTERED_BEHAVIOR_NAMES = [
     "Movement",
     "Collectible",
     "Player",
+    "TurnBasedUnit",
 ] as const;
 
 export type RegisteredBehaviorName = (typeof REGISTERED_BEHAVIOR_NAMES)[number];

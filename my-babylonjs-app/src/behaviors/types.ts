@@ -17,6 +17,14 @@ export type PlayerBehavior = {
     isPlayer: boolean;
 };
 
+export type TurnBasedUnitBehavior = {
+    hp: number;
+    attack: number;
+    defense: number;
+    agility: number;
+    actionPoints: number;
+};
+
 export type EntityBehaviorSeed = {
     EnemyAi?: {
         direction?: string;
@@ -31,6 +39,13 @@ export type EntityBehaviorSeed = {
     Player?: {
         isPlayer?: string;
     };
+    TurnBasedUnit?: {
+        hp?: string;
+        attack?: string;
+        defense?: string;
+        agility?: string;
+        actionPoints?: string;
+    };
 };
 
 export type GameBehaviors = {
@@ -38,4 +53,5 @@ export type GameBehaviors = {
     movementByEntityId: Map<string, MovementBehavior>;
     collectibleByEntityId: Map<string, CollectibleBehavior>;
     playerByEntityId: Map<string, PlayerBehavior>;
+    turnBasedUnitByEntityId: Map<string, TurnBasedUnitBehavior>;
 };

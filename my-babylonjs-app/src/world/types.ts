@@ -41,6 +41,13 @@ export type PrefabBehaviorDefaults = {
     Player?: {
         isPlayer?: string;
     };
+    TurnBasedUnit?: {
+        hp?: string;
+        attack?: string;
+        defense?: string;
+        agility?: string;
+        actionPoints?: string;
+    };
 };
 
 export type PrefabDef = {

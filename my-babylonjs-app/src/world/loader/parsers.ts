@@ -59,6 +59,7 @@ const parsePrefabBehaviors = (prefabRoot: Element): PrefabBehaviorDefaults => {
     const movementNode = behaviorsNode.querySelector(":scope > Movement");
     const collectibleNode = behaviorsNode.querySelector(":scope > Collectible");
     const playerNode = behaviorsNode.querySelector(":scope > Player");
+    const turnBasedUnitNode = behaviorsNode.querySelector(":scope > TurnBasedUnit");
 
     return {
         EnemyAi: enemyAiNode
@@ -80,6 +81,15 @@ const parsePrefabBehaviors = (prefabRoot: Element): PrefabBehaviorDefaults => {
         Player: playerNode
             ? {
                 isPlayer: playerNode.getAttribute("isPlayer") ?? undefined,
+            }
+            : undefined,
+        TurnBasedUnit: turnBasedUnitNode
+            ? {
+                hp: turnBasedUnitNode.getAttribute("hp") ?? undefined,
+                attack: turnBasedUnitNode.getAttribute("attack") ?? undefined,
+                defense: turnBasedUnitNode.getAttribute("defense") ?? undefined,
+                agility: turnBasedUnitNode.getAttribute("agility") ?? undefined,
+                actionPoints: turnBasedUnitNode.getAttribute("actionPoints") ?? undefined,
             }
             : undefined,
     };
@@ -333,13 +343,8 @@ export const parseProject = (doc: Document): ProjectConfig => {
     const { schema: globalStateSchema, initialValues: globalStateInitialValues } = parseGlobalDataStates(
         globalDataNode,
         "Project.GlobalData",
-        (key) => key.startsWith(PROJECT_NAMESPACE_PREFIX) || key.startsWith("runtime.input."),
+        (key) => key.startsWith(PROJECT_NAMESPACE_PREFIX) || key.startsWith("runtime."),
     );
-    for (const key of globalStateSchema.keys()) {
-        if (!key.startsWith(PROJECT_NAMESPACE_PREFIX) && !key.startsWith("runtime.input.")) {
-            throw new Error(`Project.GlobalData 仅允许 project.* 或 runtime.input.* 字段: ${key}`);
-        }
-    }
 
     const globalInputBindings: WorldInputBinding[] = [];
     const bindingNodes = Array.from(inputBindingsNode.querySelectorAll(":scope > Binding"));
